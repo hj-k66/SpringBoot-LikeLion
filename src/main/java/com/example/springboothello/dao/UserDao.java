@@ -10,18 +10,16 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Repository
+@Component
 public class UserDao {
-    private final DataSource dataSource;
     private final JdbcTemplate jdbcTemplate;
 
-    public UserDao(DataSource dataSource, JdbcTemplate jdbcTemplate) {
-        this.dataSource = dataSource;
+    public UserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void add(User user){
-        this.jdbcTemplate.update("INSERT INTO users(id,name,password) values(?,?,?)",
+    public int add(User user){
+       return this.jdbcTemplate.update("INSERT INTO users(id,name,password) values(?,?,?)",
                 user.getId(), user.getName(), user.getPassword());
     }
 
