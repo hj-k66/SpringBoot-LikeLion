@@ -16,8 +16,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{id}")
-    public User getById(String id){
-        return userDao.getById(id);
+    public ResponseEntity<User> getById(String id){
+        return ResponseEntity
+                .ok()
+                .body(userDao.getById(id));
     }
 
     @PostMapping(value = "/user")
