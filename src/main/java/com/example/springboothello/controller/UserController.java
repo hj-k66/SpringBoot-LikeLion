@@ -27,6 +27,7 @@ public class UserController {
     }
     @DeleteMapping(value = "/users/{id}")
     public String deleteById(@PathVariable String id){
-        userDao.getById(id)
+        userDao.deleteById(id);
+        return String.format("delete user = %s", id);
     }
 }
