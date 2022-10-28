@@ -42,7 +42,7 @@ public class UserDao {
 
 
     public void deleteById(String id){
-        this.jdbcTemplate.update("DELETE * from users where id = ?", id);
+        this.jdbcTemplate.update("DELETE from users where id = ?", id);
     }
 
 }
