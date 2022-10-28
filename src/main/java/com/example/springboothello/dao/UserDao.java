@@ -30,7 +30,7 @@ public class UserDao {
         RowMapper<User> rowMapper = new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                User user = new User(rs.getString("id", rs.getString("name"), rs.getString("password")));
+                User user = new User(rs.getString("id"), rs.getString("name"), rs.getString("password"));
                 return user;
             }
         };
