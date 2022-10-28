@@ -4,16 +4,19 @@ import com.example.springboothello.domain.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
+@Repository
 public class UserDao {
+    private final DataSource dataSource;
     private final JdbcTemplate jdbcTemplate;
 
-    public UserDao(JdbcTemplate jdbcTemplate) {
+    public UserDao(DataSource dataSource, JdbcTemplate jdbcTemplate) {
+        this.dataSource = dataSource;
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -34,8 +37,7 @@ public class UserDao {
         }
     };
     public User getById(String id){
-
-        return this.jdbcTemplate.queryForObject("SELECT * FROM users where id = ?", rowMapper);
+        return this.jdbcTemplate.queryForObject("SELECT * FROM users where id = ?", rowMapper,id);
     }
 
 
