@@ -18,4 +18,11 @@ public class UserDao {
         this.jdbcTemplate.update("INSERT INTO users(id,name,password) values(?,?,?)",
                 user.getId(), user.getName(), user.getPassword());
     }
+
+    public void deleteAll(){
+        this.jdbcTemplate.update("DELETE FROM users");
+    }
+
+
+
 }
