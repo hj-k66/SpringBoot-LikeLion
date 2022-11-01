@@ -1,6 +1,6 @@
-package com.hospitalproject.dao;
+package com.example.hospitalproject.dao;
 
-import com.hospitalproject.domain.Hospital;
+import com.example.hospitalproject.domain.Hospital;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 

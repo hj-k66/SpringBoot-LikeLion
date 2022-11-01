@@ -1,6 +1,6 @@
-package com.hospitalproject.parser;
+package com.example.hospitalproject.parser;
 
-import com.hospitalproject.domain.Hospital;
+import com.example.hospitalproject.domain.Hospital;
 
 import java.time.LocalDateTime;
 

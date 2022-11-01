@@ -1,7 +1,7 @@
-package com.hospitalproject.parser;
+package com.example.hospitalproject.parser;
 
-import com.hospitalproject.dao.HospitalDao;
-import com.hospitalproject.domain.Hospital;
+import com.example.hospitalproject.dao.HospitalDao;
+import com.example.hospitalproject.domain.Hospital;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
