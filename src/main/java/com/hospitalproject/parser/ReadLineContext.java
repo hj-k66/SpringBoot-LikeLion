@@ -1,4 +1,4 @@
-package hospitalproject.parser;
+package com.hospitalproject.parser;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

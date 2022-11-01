@@ -1,9 +1,8 @@
-package hospitalproject.parser;
+package com.hospitalproject.parser;
 
-import hospitalproject.domain.Hospital;
+import com.hospitalproject.domain.Hospital;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 public class HospitalParser implements Parser<Hospital> {
 

@@ -1,11 +1,8 @@
-package hospitalproject.dao;
+package com.hospitalproject.dao;
 
-import hospitalproject.domain.Hospital;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hospitalproject.domain.Hospital;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
 
 @Component
 public class HospitalDao {
