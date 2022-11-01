@@ -30,7 +30,7 @@ class HospitalParserTest {
 
     @Test
     @DisplayName("Hospital이 insert가 잘 되는지 test")
-    void add(){
+    void addAndGet(){
         hospitalDao.deleteAll();
         assertThat(hospitalDao.getCount()).isEqualTo(0);
 
@@ -38,6 +38,14 @@ class HospitalParserTest {
         Hospital hospital = hospitalParser.parse(line1);
         hospitalDao.add(hospital);
         assertThat(hospitalDao.getCount()).isEqualTo(1);
+
+        //findById Test
+        Hospital selectedHospital = hospitalDao.findById(hospital.getId());
+        assertThat(selectedHospital.getId()).isEqualTo(hospital.getId());
+        assertThat(selectedHospital.getHospitalName()).isEqualTo(hospital.getHospitalName());
+        assertThat(selectedHospital.getOpenServiceName()).isEqualTo(hospital.getOpenServiceName());
+        assertThat(selectedHospital.getLicenseDate()).isEqualTo(hospital.getLicenseDate());
+
     }
 
     @Test
