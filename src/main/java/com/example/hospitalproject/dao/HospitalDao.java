@@ -12,6 +12,10 @@ public class HospitalDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public void deleteAll(){
+        this.jdbcTemplate.update("delete from national_hospitals");
+    }
+
     public int getCount(){
         String sql = "SELECT count(id) from national_hospitals";
         return this.jdbcTemplate.queryForObject(sql, Integer.class);
