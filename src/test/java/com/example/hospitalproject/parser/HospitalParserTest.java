@@ -31,10 +31,12 @@ class HospitalParserTest {
     @Test
     @DisplayName("Hospital이 insert가 잘 되는지 test")
     void add(){
+        hospitalDao.deleteAll();
+        assertThat(hospitalDao.getCount()).isEqualTo(0);
+
         HospitalParser hospitalParser = new HospitalParser();
         Hospital hospital = hospitalParser.parse(line1);
         hospitalDao.add(hospital);
-
         assertThat(hospitalDao.getCount()).isEqualTo(1);
     }
 
