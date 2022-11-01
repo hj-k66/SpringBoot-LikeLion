@@ -12,6 +12,11 @@ public class HospitalDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public int getCount(){
+        String sql = "SELECT count(id) from national_hospitals";
+        return this.jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
 
     public void add(Hospital hospital){
         String sql = "INSERT INTO `national_hospitals` (`id`, `open_service_name`, `open_local_government_code`," +
