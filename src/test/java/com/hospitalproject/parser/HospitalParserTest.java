@@ -23,6 +23,8 @@ class HospitalParserTest {
     @Autowired
     HospitalDao hospitalDao;
 
+
+
     @Test
     @DisplayName("Hospital이 insert가 잘 되는지 test")
     void add(){
@@ -31,7 +33,6 @@ class HospitalParserTest {
         hospitalDao.add(hospital);
 
     }
-
 
     @Test
     @DisplayName("csv 전체 라인을 잘 파싱하는지 test")
