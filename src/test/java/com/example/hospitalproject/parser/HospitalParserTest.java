@@ -2,6 +2,7 @@ package com.example.hospitalproject.parser;
 
 import com.example.hospitalproject.dao.HospitalDao;
 import com.example.hospitalproject.domain.Hospital;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -25,6 +27,7 @@ class HospitalParserTest {
 
 
 
+
     @Test
     @DisplayName("Hospital이 insert가 잘 되는지 test")
     void add(){
@@ -32,6 +35,7 @@ class HospitalParserTest {
         Hospital hospital = hospitalParser.parse(line1);
         hospitalDao.add(hospital);
 
+        assertThat(hospitalDao.getCount()).isEqualTo(1);
     }
 
     @Test
