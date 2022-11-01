@@ -21,7 +21,7 @@ public class UserController {
             return ResponseEntity
                     .ok()
                     .body(userDao.getById(id));
-        }catch (Exception e){
+       }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
