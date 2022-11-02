@@ -25,6 +25,19 @@ class HospitalParserTest {
     @Autowired
     HospitalDao hospitalDao;
 
+    @Test
+    void insertFile() throws IOException {
+        hospitalDao.deleteAll();
+        assertThat(hospitalDao.getCount()).isEqualTo(0);
+        String filename = "C:\\Users\\user\\Downloads\\fulldata_01_01_02_P_의원.csv";
+        List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
+        assertTrue(hospitals.size() > 10000);
+
+        for(Hospital hospital : hospitals){
+            hospitalDao.add(hospital);
+        }
+        assertTrue(hospitalDao.getCount() > 10000);
+    }
 
 
 
@@ -51,6 +64,8 @@ class HospitalParserTest {
     @Test
     @DisplayName("csv 전체 라인을 잘 파싱하는지 test")
     void ReadByLine() throws IOException {
+        hospitalDao.deleteAll();
+
         String filename = "C:\\Users\\user\\Downloads\\fulldata_01_01_02_P_의원.csv";
         List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
         assertTrue(hospitals.size() > 10000);
