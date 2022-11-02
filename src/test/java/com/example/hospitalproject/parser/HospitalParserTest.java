@@ -29,72 +29,72 @@ class HospitalParserTest {
     @Autowired
     HospitalService hospitalService;
 
-    @Test
-    void insertFile() throws IOException {
-        hospitalDao.deleteAll();
-        assertThat(hospitalDao.getCount()).isEqualTo(0);
-
-        String filename = "C:\\Users\\user\\Downloads\\fulldata_01_01_02_P_의원.csv";
-        int cnt = hospitalService.insertHospitalData(filename);
-        assertTrue(cnt > 10000);
-        System.out.printf("파싱된 데이터 개수:%d", cnt);
-    }
-
-
-
-    @Test
-    @DisplayName("Hospital이 insert가 잘 되는지 test")
-    void addAndGet(){
-        hospitalDao.deleteAll();
-        assertThat(hospitalDao.getCount()).isEqualTo(0);
-
-        HospitalParser hospitalParser = new HospitalParser();
-        Hospital hospital = hospitalParser.parse(line1);
-        hospitalDao.add(hospital);
-        assertThat(hospitalDao.getCount()).isEqualTo(1);
-
-        //findById Test
-        Hospital selectedHospital = hospitalDao.findById(hospital.getId());
-        assertThat(selectedHospital.getId()).isEqualTo(hospital.getId());
-        assertThat(selectedHospital.getHospitalName()).isEqualTo(hospital.getHospitalName());
-        assertThat(selectedHospital.getOpenServiceName()).isEqualTo(hospital.getOpenServiceName());
-        assertThat(selectedHospital.getLicenseDate()).isEqualTo(hospital.getLicenseDate());
-
-    }
-
-    @Test
-    @DisplayName("csv 전체 라인을 잘 파싱하는지 test")
-    void ReadByLine() throws IOException {
-        hospitalDao.deleteAll();
-
-        String filename = "C:\\Users\\user\\Downloads\\fulldata_01_01_02_P_의원.csv";
-        List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
-        assertTrue(hospitals.size() > 10000);
-    }
-
-    @Test
-    @DisplayName("csv 1줄을 Hospital 인스턴스로 잘 만드는지 Test")
-    void convertToHospital(){
-        HospitalParser hp =new HospitalParser();
-        Hospital hospital = hp.parse(line1);
-
-        assertEquals(1, hospital.getId());
-        assertEquals("의원", hospital.getOpenServiceName());
-        assertEquals(3620000,hospital.getOpenLocalGovernmentCode());
-        assertEquals("PHMA119993620020041100004",hospital.getManagementNumber());
-        assertEquals(LocalDateTime.of(1999,06,12,0,0,0), hospital.getLicenseDate());
-        assertEquals(1, hospital.getBusinessStatus());
-        assertEquals(13, hospital.getBusinessStatusCode());
-        assertEquals("062-515-2875", hospital.getPhone());
-        assertEquals("광주광역시 북구 풍향동 565번지 4호 3층", hospital.getFullAddress());
-        assertEquals("광주광역시 북구 동문대로 24, 3층 (풍향동)", hospital.getRoadNameAddress());
-        assertEquals("효치과의원", hospital.getHospitalName());
-        assertEquals("치과의원", hospital.getBusinessTypeName());
-        assertEquals(1, hospital.getHealthcareProviderCount());
-        assertEquals(0, hospital.getPatientRoomCount());
-        assertEquals(0, hospital.getTotalNumberOfBeds());
-        assertEquals(52.29f, hospital.getTotalAreaSize());
-    }
+//    @Test
+//    void insertFile() throws IOException {
+//        hospitalDao.deleteAll();
+//        assertThat(hospitalDao.getCount()).isEqualTo(0);
+//
+//        String filename = "C:\\Users\\user\\Downloads\\fulldata_01_01_02_P_의원.csv";
+//        int cnt = hospitalService.insertHospitalData(filename);
+//        assertTrue(cnt > 10000);
+//        System.out.printf("파싱된 데이터 개수:%d", cnt);
+//    }
+//
+//
+//
+//    @Test
+//    @DisplayName("Hospital이 insert가 잘 되는지 test")
+//    void addAndGet(){
+//        hospitalDao.deleteAll();
+//        assertThat(hospitalDao.getCount()).isEqualTo(0);
+//
+//        HospitalParser hospitalParser = new HospitalParser();
+//        Hospital hospital = hospitalParser.parse(line1);
+//        hospitalDao.add(hospital);
+//        assertThat(hospitalDao.getCount()).isEqualTo(1);
+//
+//        //findById Test
+//        Hospital selectedHospital = hospitalDao.findById(hospital.getId());
+//        assertThat(selectedHospital.getId()).isEqualTo(hospital.getId());
+//        assertThat(selectedHospital.getHospitalName()).isEqualTo(hospital.getHospitalName());
+//        assertThat(selectedHospital.getOpenServiceName()).isEqualTo(hospital.getOpenServiceName());
+//        assertThat(selectedHospital.getLicenseDate()).isEqualTo(hospital.getLicenseDate());
+//
+//    }
+//
+//    @Test
+//    @DisplayName("csv 전체 라인을 잘 파싱하는지 test")
+//    void ReadByLine() throws IOException {
+//        hospitalDao.deleteAll();
+//
+//        String filename = "C:\\Users\\user\\Downloads\\fulldata_01_01_02_P_의원.csv";
+//        List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
+//        assertTrue(hospitals.size() > 10000);
+//    }
+//
+//    @Test
+//    @DisplayName("csv 1줄을 Hospital 인스턴스로 잘 만드는지 Test")
+//    void convertToHospital(){
+//        HospitalParser hp =new HospitalParser();
+//        Hospital hospital = hp.parse(line1);
+//
+//        assertEquals(1, hospital.getId());
+//        assertEquals("의원", hospital.getOpenServiceName());
+//        assertEquals(3620000,hospital.getOpenLocalGovernmentCode());
+//        assertEquals("PHMA119993620020041100004",hospital.getManagementNumber());
+//        assertEquals(LocalDateTime.of(1999,06,12,0,0,0), hospital.getLicenseDate());
+//        assertEquals(1, hospital.getBusinessStatus());
+//        assertEquals(13, hospital.getBusinessStatusCode());
+//        assertEquals("062-515-2875", hospital.getPhone());
+//        assertEquals("광주광역시 북구 풍향동 565번지 4호 3층", hospital.getFullAddress());
+//        assertEquals("광주광역시 북구 동문대로 24, 3층 (풍향동)", hospital.getRoadNameAddress());
+//        assertEquals("효치과의원", hospital.getHospitalName());
+//        assertEquals("치과의원", hospital.getBusinessTypeName());
+//        assertEquals(1, hospital.getHealthcareProviderCount());
+//        assertEquals(0, hospital.getPatientRoomCount());
+//        assertEquals(0, hospital.getTotalNumberOfBeds());
+//        assertEquals(52.29f, hospital.getTotalAreaSize());
+//    }
 
 
 }
