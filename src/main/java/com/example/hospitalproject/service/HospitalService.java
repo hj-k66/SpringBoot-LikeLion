@@ -4,6 +4,7 @@ import com.example.hospitalproject.dao.HospitalDao;
 import com.example.hospitalproject.domain.Hospital;
 import com.example.hospitalproject.parser.ReadLineContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,22 +19,25 @@ public class HospitalService {
         this.hospitalDao = hospitalDao;
     }
 
-    public void insertHospitalData(String filename){
+    @Transactional
+    public int insertHospitalData(String filename) {
+        int cnt = 0;
         try {
             List<Hospital> hospitals = this.hospitalReadLineContext.readByLine(filename);
 
-            for(Hospital hospital : hospitals){
+            for (Hospital hospital : hospitals) {
                 try {
                     this.hospitalDao.add(hospital);
+                    cnt++;
                 } catch (Exception e) {
-                    System.out.printf("id: %d에 문제가 있습니다.", hospital.getId());
+                    System.out.printf("id: %d에 문제가 있습니다.\n", hospital.getId());
                     throw new RuntimeException(e);
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        return cnt;
     }
 
 }

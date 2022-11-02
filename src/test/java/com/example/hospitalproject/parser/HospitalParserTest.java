@@ -2,6 +2,7 @@ package com.example.hospitalproject.parser;
 
 import com.example.hospitalproject.dao.HospitalDao;
 import com.example.hospitalproject.domain.Hospital;
+import com.example.hospitalproject.service.HospitalService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,18 +26,18 @@ class HospitalParserTest {
     @Autowired
     HospitalDao hospitalDao;
 
+    @Autowired
+    HospitalService hospitalService;
+
     @Test
     void insertFile() throws IOException {
         hospitalDao.deleteAll();
         assertThat(hospitalDao.getCount()).isEqualTo(0);
-        String filename = "C:\\Users\\user\\Downloads\\fulldata_01_01_02_P_의원.csv";
-        List<Hospital> hospitals = hospitalReadLineContext.readByLine(filename);
-        assertTrue(hospitals.size() > 10000);
 
-        for(Hospital hospital : hospitals){
-            hospitalDao.add(hospital);
-        }
-        assertTrue(hospitalDao.getCount() > 10000);
+        String filename = "C:\\Users\\user\\Downloads\\fulldata_01_01_02_P_의원.csv";
+        int cnt = hospitalService.insertHospitalData(filename);
+        assertTrue(cnt > 10000);
+        System.out.printf("파싱된 데이터 개수:%d", cnt);
     }
 
 
